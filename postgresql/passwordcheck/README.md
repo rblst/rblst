@@ -1,6 +1,6 @@
 # passwordcheck_with_params
 
-The PostgeSQL module [passwordcheck](https://www.postgresql.org/docs/current/passwordcheck.html) is simple module, where all rules are hardcoded and parameters cannot be used.
+The PostgreSQL module [passwordcheck](https://www.postgresql.org/docs/current/passwordcheck.html) is simple module, where all rules are hardcoded and parameters cannot be used.
 
 This module, called passwordcheck_with_params is an extended version, which allows parametrization. It handles lowercase, uppercase, numeric and special characters separately. Characters can also be disallowed.
 It also gives the user a possibility to use cracklib, including a dictionary. (Note that cracklib cannot be parametrized either. This implementation, however, could be extended further to only take into consideration certain cracklib rules...)
