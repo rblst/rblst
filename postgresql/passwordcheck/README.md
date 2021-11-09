@@ -23,7 +23,7 @@ This description is for PostgreSQL 14, but it should work similarly for differen
 - `postgresql14-devel` 
 - `gcc` 
 - `git` 
-- `cracklib-devel` (optional)
+- `cracklib-devel` (optional, for cracklib support)
 
 Package names might differ depending on the distribution. (For CentOS, you may also need the EPEL repository as well as the `centos-release-scl` and `llvm-toolset-7`packages.)
 
@@ -75,7 +75,9 @@ You must restart the server for the module to be used.
 
 ## Create cracklib dictionary (optional)
 ### Install packages
-Install the `words` package for a dictionary of English words.
+Install the following packages
+- `cracklib` – password checker library + utilities to manage dictionaries
+- `words` – a dictionary of English words
 
 ### Create dictionary
 
@@ -92,7 +94,8 @@ Make sure the directory path is the same as in the `Makefile` created above.
 #### Add Hungarian dictionary (optional)
 
 ##### Download Hungarian word list
-You can use any word list. This here is only an example.
+You can use any word list. The file must contain one word per line.
+
 
     wget https://raw.githubusercontent.com/Blkzer0/Wordlists/master/Hungarian.txt
     
@@ -102,10 +105,13 @@ Make sure that the dictionary file name is the same as in the `Makefile` created
     cat /usr/share/dict/words Hungarian.txt > en_hu
 
 #### Gzip the dictionary
-This step is needed for making dictionary files.
+This step is needed for generating dictionary files.
 
     gzip en_hu
     
 #### Generate dictionary files
+The `cracklib-format` utility lowercases all words, removes control characters, and sorts the lists.
+
+The `cracklib-packer` utility takes the sorted and cleaned list, and creates a database in the directory and with the prefix given by the argument. It generates three file with the suffixes of `.hwm`, `.pwd`, and `.pwi`.
 
     cracklib-format en_hu | cracklib-packer $HOME/cracklib_dict/en_hu
