@@ -1,10 +1,10 @@
 # passwordcheck_with_params
 
-The passwordcheck_with_params module provides a single, global password profile for PostgreSQL.
+The `passwordcheck_with_params` module provides a single, global password profile for PostgreSQL.
 
-It is built on the [passwordcheck](https://www.postgresql.org/docs/current/passwordcheck.html) module, in which all rules are hard-coded, no parameters can be used.
+It is built on the supplied [passwordcheck](https://www.postgresql.org/docs/current/passwordcheck.html) module, which only offers hard-coded rules, without any parameters.
 
-This module is called passwordcheck_with_params because it allows some parametrization. It handles certain character classes (lowercase, uppercase, numeric and special characters) separately. You can also disallow certain characters.
+This module is called `passwordcheck_with_params` because it allows some parametrization. It handles certain character classes (lowercase, uppercase, numeric and special characters) separately. You can also disallow certain characters.
 
 To see the list of parameters for this module, you may run: 
 
@@ -77,33 +77,35 @@ You must restart the server for the module to be used.
 ### Install packages
 Install the `words` package for a dictionary of English words.
 
-### Switch to postgres user
+### Create dictionary
+
+#### Switch to postgres user
+
     su - postgres
    
-### Create directory for dictionary files
+#### Create directory for dictionary files
 Make sure the directory path is the same as in the `Makefile` created above.
 
     mkdir $HOME/cracklib_dict
     cd $HOME/cracklib_dict
 
-### Add Hungarian dictionary (optional)
+#### Add Hungarian dictionary (optional)
 
-#### Download Hungarian word list
+##### Download Hungarian word list
 You can use any word list. This here is only an example.
 
     wget https://raw.githubusercontent.com/Blkzer0/Wordlists/master/Hungarian.txt
     
-#### Concatenate English and Hungarian dictionaries
-This is optional. 
-Just make sure that the dictionary file name is the same as in the `Makefile` created above.
+##### Concatenate English and Hungarian dictionaries
+Make sure that the dictionary file name is the same as in the `Makefile` created above.
 
     cat /usr/share/dict/words Hungarian.txt > en_hu
 
-### Gzip the dictionary
+#### Gzip the dictionary
 This step is needed for making dictionary files.
 
     gzip en_hu
     
-### Create dictionary files
+#### Generate dictionary files
 
     cracklib-format en_hu | cracklib-packer $HOME/cracklib_dict/en_hu
