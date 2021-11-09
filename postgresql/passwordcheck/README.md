@@ -73,11 +73,11 @@ Set the following parameter in `postgresql.conf`:
 
 You must restart the server for the module to be used.
 
-## Create cracklib dictionary (optional)
+## Creating a cracklib dictionary (optional)
 ### Install packages
 Install the following packages
 - `cracklib` – password checker library + utilities to manage dictionaries
-- `words` – a dictionary of English words
+- `words` – a dictionary of English words (there are many more out there: https://github.com/cracklib/cracklib/tree/master/words)
 
 ### Create dictionary
 
@@ -91,7 +91,7 @@ Make sure the directory path is the same as in the `Makefile` created above.
     mkdir $HOME/cracklib_dict
     cd $HOME/cracklib_dict
 
-#### Add Hungarian dictionary (optional)
+#### Add Hungarian word list (optional)
 
 ##### Download Hungarian word list
 You can use any word list. The file must contain one word per line.
@@ -99,12 +99,12 @@ You can use any word list. The file must contain one word per line.
 
     wget https://raw.githubusercontent.com/Blkzer0/Wordlists/master/Hungarian.txt
     
-##### Concatenate English and Hungarian dictionaries
+##### Concatenate English and Hungarian word lists
 Make sure that the dictionary file name is the same as in the `Makefile` created above.
 
     cat /usr/share/dict/words Hungarian.txt > en_hu
 
-#### Gzip the dictionary
+#### Gzip the word list
 This step is needed for generating dictionary files.
 
     gzip en_hu
