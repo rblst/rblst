@@ -65,7 +65,7 @@ Make sure that `pg_config` is on path.
 
 ### Load the module
 
-In `postgresql.conf`:
+Set the following parameter in `postgresql.conf`:
 
     shared_preload_libraries = 'passwordcheck_with_params'
 
@@ -85,6 +85,7 @@ Make sure the directory path is the same as in the `Makefile` created above.
 
 #### Download Hungarian word list
 This is optional.
+
     wget https://raw.githubusercontent.com/Blkzer0/Wordlists/master/Hungarian.txt
     
 #### Concatenate English and Hungarian dictionaries
@@ -94,7 +95,10 @@ Just make sure that the dictionary file name is the same as in the `Makefile` cr
     cat /usr/share/dict/words Hungarian.txt > en_hu
 
 #### Gzip the dictionary
+This step is needed for making dictionary files.
+
     gzip en_hu
     
 #### Create dictionary files
+
     cracklib-format en_hu | cracklib-packer $HOME/cracklib_dict/en_hu
