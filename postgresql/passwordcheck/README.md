@@ -17,7 +17,9 @@ Unfortunately, cracklib itself cannot be parametrized either. This implementatio
 This description is for PostgreSQL 14, but it should work similarly for different versions.
 
 ### Compile the module
-Install these packages:
+
+#### Install packages
+
 - `postgresql14-devel` 
 - `gcc` 
 - `git` 
@@ -71,20 +73,23 @@ Set the following parameter in `postgresql.conf`:
 
 You must restart the server for the module to be used.
 
-### Create cracklib dictionary (optional)
+## Create cracklib dictionary (optional)
+### Install packages
 Install the `words` package for a dictionary of English words.
 
-#### Switch to postgres user
+### Switch to postgres user
     su - postgres
    
-#### Create directory for dictionary creation
+### Create directory for dictionary files
 Make sure the directory path is the same as in the `Makefile` created above.
 
     mkdir $HOME/cracklib_dict
     cd $HOME/cracklib_dict
 
+### Add Hungarian dictionary (optional)
+
 #### Download Hungarian word list
-This is optional.
+You can use any word list. This here is only an example.
 
     wget https://raw.githubusercontent.com/Blkzer0/Wordlists/master/Hungarian.txt
     
@@ -94,11 +99,11 @@ Just make sure that the dictionary file name is the same as in the `Makefile` cr
 
     cat /usr/share/dict/words Hungarian.txt > en_hu
 
-#### Gzip the dictionary
+### Gzip the dictionary
 This step is needed for making dictionary files.
 
     gzip en_hu
     
-#### Create dictionary files
+### Create dictionary files
 
     cracklib-format en_hu | cracklib-packer $HOME/cracklib_dict/en_hu
